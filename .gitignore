@@ -7,7 +7,6 @@ dist
 
 # rust
 /rs/target
-/rs-binance-listener/target
 **/*.rs.bk
 Cargo.lock
 .aider*
