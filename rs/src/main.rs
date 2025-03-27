@@ -40,6 +40,10 @@ fn main() {
         signerChainId: 56,
     };
 
+    // let sender_address_bytes = order.senderAddress.bytes();
+
+    println!("sender_address_bytes: {:?}", order.senderAddress.0.0);
+
     println!("Order: {:#?}", order);
 
     // The `eip712_domain` macro lets you easily define an EIP-712 domain
@@ -54,10 +58,19 @@ fn main() {
     let domain_hash = my_domain.hash_struct();
     println!("Domain hash: {}", domain_hash);
 
-    // Because all the hard work is done by the `sol!` macro, EIP-712 is as easy
-    // as calling `eip712_signing_hash` with your domain
-    // let signing_hash = order.eip712_signing_hash(&my_domain);
+    let type_hash = order.eip712_type_hash();
+    println!("Type hash: {}", type_hash);
 
+    let struct_body = order.eip712_encode_data();
+    println!("Body: {:?}", struct_body);
+
+    let struct_hash = order.eip712_hash_struct();
+    println!("Struct hash (type + body): {:?}", struct_hash);
+
+    assert_eq!(
+        hex::encode(struct_hash.0),
+        "0xa5d596fd5144826e4b9e5cc8c9b97d8a5c9a445ee7b09479d2468d0d4c0f6bca"
+    )
 
     // let signer = PrivateKeySigner::random();
 
