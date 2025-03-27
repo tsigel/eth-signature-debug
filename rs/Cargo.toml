@@ -4,5 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-alloy = { version = "0.12", features = ["full"] }
-ethers = "2"
+alloy-core = "0.8"
+alloy-primitives = "0.8"
+alloy-sol-types = { version = "0.8", features = ["std", "eip712-serde"] }
+alloy-signer = { version = "0.8", features = ["eip712"] }
+hex = "0.4"
