@@ -1,3 +1,4 @@
+use alloy_primitives::aliases::U80;
 use alloy_sol_types::{SolStruct, sol};
 
 // `sol!` allows you to define struct types!
@@ -26,12 +27,12 @@ fn main() {
         senderAddress: "0xe9d66F0Ef74D8fDd136EeAD7Abdc0bD701C1645d"
             .parse()
             .unwrap(),
-        price: 4164001.try_into().unwrap(),
+        price: U80::from(4164001),
         instrumentIndex: 22,
         matcherAddress: "0xe9d66F0Ef74D8fDd136EeAD7Abdc0bD701C1645d"
             .parse()
             .unwrap(),
-        price2: 0.try_into().unwrap(),
+        price2: U80::from(0),
         buySide: 0,
         amount: 3115100000000u64.try_into().unwrap(),
         matcherFee: 51885106,
@@ -68,7 +69,7 @@ fn main() {
     println!("Struct hash (type + body): {:?}", struct_hash);
 
     assert_eq!(
-        hex::encode(struct_hash.0),
+        format!("0x{}", hex::encode(struct_hash.0)),
         "0xa5d596fd5144826e4b9e5cc8c9b97d8a5c9a445ee7b09479d2468d0d4c0f6bca"
     )
 
