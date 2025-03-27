@@ -1,0 +1,13 @@
+electra-hack.iml
+.idea
+.env*
+node_modules
+dist
+
+
+# rust
+/rs/target
+/rs-binance-listener/target
+**/*.rs.bk
+Cargo.lock
+.aider*
